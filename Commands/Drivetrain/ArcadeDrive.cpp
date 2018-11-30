@@ -28,7 +28,7 @@ ArcadeDrive::~ArcadeDrive()
 // Called repeatedly when this Command is scheduled to run
 void ArcadeDrive::Execute()
 {
-	CRobotMain::m_Drivetrain.Drive(-m_pController->GetY(GenericHID::kLeftHand), -m_pController->GetX(GenericHID::kRightHand));
+	CRobotMain::m_Drivetrain.Drive(m_pController->GetRawAxis(1), -m_pController->GetRawAxis(4));
 }
 
 // Called once after isFinished returns true

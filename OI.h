@@ -22,11 +22,12 @@ class OI
 public:
     OI();
     ~OI();
-	XboxController* GetController();
+	Joystick* GetController();
 
 private:
-	XboxController* m_pDriveController;
-	XboxController* m_pAuxController;
+	Joystick* m_pDriveController;
+	JoystickButton* m_pShiftDrivetrain;
+///	Joystick* m_pAuxController;
 };
 /////////////////////////////////////////////////////////////////////////////
 #endif

@@ -23,7 +23,7 @@ public:
 	void End();
 
 private:
-	XboxController* m_pController;
+	Joystick* m_pController;
 };
 ///////////////////////////////////////////////////////////////////////////////
 #endif
