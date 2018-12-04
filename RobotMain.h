@@ -32,10 +32,10 @@ private:
 	SendableChooser<Command*> *m_pAutoChooser;
 
 	// Autonomous Commands.
-	AutoIdle *m_pAutoIdle;
-	AutoCenter *m_pAutoCenter;
-	AutoLeft *m_pAutoLeft;
-	AutoRight *m_pAutoRight;
+	AutoIdle m_AutoIdle;
+	AutoCenter m_AutoCenter;
+	AutoLeft m_AutoLeft;
+	AutoRight m_AutoRight;
 
 	Compressor *m_pCompressor;
 	void RobotInit() override;

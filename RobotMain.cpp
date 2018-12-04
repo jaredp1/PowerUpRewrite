@@ -28,10 +28,10 @@ OI CRobotMain::m_OI;
 CRobotMain::CRobotMain() : TimedRobot()
 {
 	m_pAutoChooser = new SendableChooser<Command*>;
-	m_pAutoIdle = new AutoIdle();
-	m_pAutoLeft = new AutoLeft();
-	m_pAutoRight = new AutoRight();
-	m_pAutoCenter = new AutoCenter();
+///	m_pAutoIdle = new AutoIdle();
+///	m_pAutoLeft = new AutoLeft();
+///	m_pAutoRight = new AutoRight();
+///	m_pAutoCenter = new AutoCenter();
 	m_pCompressor = new Compressor();
 }
 
@@ -40,18 +40,18 @@ CRobotMain::~CRobotMain()
 {
 	delete m_pAutoChooser;
 	delete m_pAutoCommand;
-	delete m_pAutoIdle;
-	delete m_pAutoLeft;
-	delete m_pAutoRight;
-	delete m_pAutoCenter;
+///	delete m_pAutoIdle;
+///	delete m_pAutoLeft;
+///	delete m_pAutoRight;
+///	delete m_pAutoCenter;
 	delete m_pCompressor;
 
 	m_pAutoChooser = nullptr;
 	m_pAutoCommand = nullptr;
-	m_pAutoIdle = nullptr;
-	m_pAutoLeft = nullptr;
-	m_pAutoRight  = nullptr;
-	m_pAutoCenter = nullptr;
+///	m_pAutoIdle = nullptr;
+///	m_pAutoLeft = nullptr;
+///	m_pAutoRight  = nullptr;
+///	m_pAutoCenter = nullptr;
 	m_pCompressor = nullptr;
 
 }
@@ -72,10 +72,10 @@ void CRobotMain::RobotInit()
 	SmartDashboard::PutData(m_pCompressor);
 
 	// Instantiate the command used for the autonomous period
-	m_pAutoChooser->AddDefault("Idle", m_pAutoIdle);
-	m_pAutoChooser->AddObject("Center Auto", m_pAutoCenter);
-	m_pAutoChooser->AddObject("Left Auto", m_pAutoLeft);
-	m_pAutoChooser->AddObject("Right Auto", m_pAutoRight);
+	m_pAutoChooser->AddDefault("Idle", &m_AutoIdle);
+	m_pAutoChooser->AddObject("Center Auto", &m_AutoCenter);
+	m_pAutoChooser->AddObject("Left Auto", &m_AutoLeft);
+	m_pAutoChooser->AddObject("Right Auto", &m_AutoRight);
 	SmartDashboard::PutData("Auto Mode", m_pAutoChooser);
 }
 
@@ -150,6 +150,8 @@ void CRobotMain::TeleopPeriodic()
 {
 	// Call the ArmPosition Tick.
 	m_ArmPosition.Tick();
+
+	m_Drivetrain.StartDrive();
 
 	m_pCompressor->Start();
 

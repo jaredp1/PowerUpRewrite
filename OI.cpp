@@ -21,31 +21,31 @@
 OI::OI()
 {
 	m_pDriveController = new Joystick(0);
-///	m_pAuxController   = new Joystick(1);
+	m_pAuxController   = new Joystick(1);
 
 	// Create buttons.
 	m_pShiftDrivetrain = new JoystickButton(m_pDriveController, eButtonLS);
-///	JoystickButton m_OpenIntake(m_pDriveController, eButtonRB);
-///	JoystickButton m_MoveArmToScale(m_pDriveController, eButtonY);
-///	JoystickButton m_ChangeCamera(m_pDriveController, eButtonA);
-///	JoystickButton m_FrontPickup(m_pAuxController, eButtonA);
-///	JoystickButton m_BackPickup(m_pAuxController, eButtonB);
+	m_pOpenIntake = new JoystickButton(m_pDriveController, eButtonRB);
+	m_pMoveArmToScale = new JoystickButton(m_pDriveController, eButtonY);
+	m_pChangeCamera = new JoystickButton(m_pDriveController, eButtonA);
+	m_pFrontPickup = new JoystickButton(m_pAuxController, eButtonA);
+	m_pBackPickup = new JoystickButton(m_pAuxController, eButtonB);
 ///	POV m_HomeArm(m_pAuxController, ePOVLeft);
 ///	POV m_ManualUp(m_pAuxController, ePOVUp);
 ///	POV m_ManualDown(m_pAuxController, ePOVDown);
 
 	// Drive controller buttons.
 	m_pShiftDrivetrain->WhenPressed(new ShiftDrivetrain());
-///	m_OpenIntake.WhenPressed(new Intake());
-///	m_MoveArmToScale.WhenPressed(new MoveArm(75.0));
-///	m_ChangeCamera.WhenPressed(new ChangeCamera());
+	m_pOpenIntake->WhenPressed(new Intake());
+	m_pMoveArmToScale->WhenPressed(new MoveArm(75.0));
+	m_pChangeCamera->WhenPressed(new ChangeCamera());
 
 	// Second controller buttons.
 ///	m_HomeArm.WhenActive(new HomeArm());
 ///	m_ManualUp.WhenActive(new JogArm(true));
 ///	m_ManualDown.WhenActive(new JogArm(false));
-///	m_BackPickup.WhenPressed(new MoveArm(180.0));
-///	m_FrontPickup.WhenPressed(new MoveArm(0.0));
+	m_pBackPickup->WhenPressed(new MoveArm(180.0));
+	m_pFrontPickup->WhenPressed(new MoveArm(0.0));
 
 }
 

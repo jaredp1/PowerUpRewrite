@@ -1,5 +1,6 @@
 
 #include "DrivetrainFollowPath.h"
+#include <Commands/Drivetrain/ArcadeDrive.h>
 #include <pathfinder.h>
 #include <WPILib.h>
 #include <RobotMain.h>
@@ -16,6 +17,8 @@ DrivetrainFollowPath::DrivetrainFollowPath(int nPathID) : Command("DrivetrainFol
 
 	m_nLength = 0;
 
+	printf("FollowPath Constructed.");
+
 }
 
 /******************************************************************************
@@ -31,11 +34,13 @@ void DrivetrainFollowPath::Initialize()
 	{
 		// Just idling, exit.
 		m_bHasFinished = true;
+		printf("Idle Selected.");
 		return;
 	}
 
 	// Allocate memory.
 	FILE *fp;
+	fp = nullptr;
 
 	if (m_nPathID == ePathCenterToLeft)
 	{
@@ -45,6 +50,7 @@ void DrivetrainFollowPath::Initialize()
 		fp = fopen("~/CenterToLeft-Right.csv", "r");
 		pathfinder_deserialize_csv(fp, &m_RightTrajectory);
 		fclose(fp);
+		printf("CenterToLeft Selected.");
 	}
 
 	if (m_nPathID == ePathCenterToRight)
@@ -55,6 +61,8 @@ void DrivetrainFollowPath::Initialize()
 		fp = fopen("~/CenterToRight-Right.csv", "r");
 		pathfinder_deserialize_csv(fp, &m_RightTrajectory);
 		fclose(fp);
+		printf("CenterToRight Selected.");
+
 	}
 
 	if (m_nPathID == ePathLeftToScale)

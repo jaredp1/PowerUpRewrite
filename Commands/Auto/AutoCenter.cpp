@@ -21,15 +21,15 @@ AutoCenter::AutoCenter()
 	// 2. Decide where to go, drive to the Switch and raise arm to 46 degrees
 	// 3. Eject
 	// 4. Profit?
-	AddSequential(new HomeArm());
-	AddParallel(new MoveArm(46.0));
+///	AddSequential(new HomeArm());
+///	AddParallel(new MoveArm(46.0));
 	if (DriverStation::GetInstance().GetGameSpecificMessage()[0] == 'R')
 	{
-		AddParallel(new DrivetrainFollowPath(ePathCenterToRight));
+		AddSequential(new DrivetrainFollowPath(ePathCenterToRight));
 	}
 	else if (DriverStation::GetInstance().GetGameSpecificMessage()[0] == 'L')
 	{
-		AddParallel(new DrivetrainFollowPath(ePathCenterToLeft));
+		AddSequential(new DrivetrainFollowPath(ePathCenterToLeft));
 	}
 	else
 	{

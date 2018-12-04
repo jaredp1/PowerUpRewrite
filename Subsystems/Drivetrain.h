@@ -32,6 +32,7 @@ public:
 	int  GetLeftEncoderCount();
 	int  GetRightEncoderCount();
 	double GetAngle();
+	void StartDrive();
 
 private:
 	Solenoid	 *m_pDriveSolenoid;

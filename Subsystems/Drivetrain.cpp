@@ -10,6 +10,7 @@
 #include <WPILib.h>
 #include <ctre/Phoenix.h>
 #include <Commands/Drivetrain/ArcadeDrive.h>
+#include <RobotMain.h>
 #include "../IOMap.h"
 #include "CANPosition.h"
 #include "Subsystems/Drivetrain.h"
@@ -145,8 +146,10 @@ void Drivetrain::Drive(double dSpeed, double dRotation)
 
 void Drivetrain::ManualDrive(double dLeft, double dRight)
 {
-	m_pLeftDrive->GetMotorPointer()->Set(dLeft);
-	m_pRightDrive->GetMotorPointer()->Set(dRight);
+	m_pRobotDrive->SetSafetyEnabled(true);
+	m_pLeftDrive->GetMotorPointer()->Set(ControlMode::PercentOutput, dLeft);
+	m_pRightDrive->GetMotorPointer()->Set(ControlMode::PercentOutput, dRight);
+	printf("Left - %f : Right - %f", dLeft, dRight);
 }
 /******************************************************************************
 	Shift:			Toggles the Drivetrain between Low and High gear.
@@ -187,4 +190,12 @@ double Drivetrain::GetAngle()
 {
 	return m_pGyro->GetAngle();
 }
+
+void Drivetrain::StartDrive()
+{
+	m_pRobotDrive->SetSafetyEnabled(true);
+	new ArcadeDrive();
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////

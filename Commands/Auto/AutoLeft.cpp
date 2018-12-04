@@ -21,15 +21,15 @@ AutoLeft::AutoLeft()
 	// 2. Decide where to go, drive to the Scale and raise arm to 80 degrees (this may need tweaking)
 	// 3. Eject
 	// 4. Profit?
-	AddSequential(new HomeArm());
-	AddParallel(new MoveArm(80.0));
+///	AddSequential(new HomeArm());
+///	AddParallel(new MoveArm(80.0));
 	if (DriverStation::GetInstance().GetGameSpecificMessage()[1] == 'R')
 	{
-		AddParallel(new DrivetrainFollowPath(ePathLeftToFarScale));
+		AddSequential(new DrivetrainFollowPath(ePathLeftToFarScale));
 	}
 	else if (DriverStation::GetInstance().GetGameSpecificMessage()[1] == 'L')
 	{
-		AddParallel(new DrivetrainFollowPath(ePathLeftToScale));
+		AddSequential(new DrivetrainFollowPath(ePathLeftToScale));
 	}
 	else
 	{

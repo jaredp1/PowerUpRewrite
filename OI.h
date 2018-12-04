@@ -26,7 +26,13 @@ public:
 
 private:
 	Joystick* m_pDriveController;
+	Joystick* m_pAuxController;
 	JoystickButton* m_pShiftDrivetrain;
+	JoystickButton* m_pOpenIntake;
+	JoystickButton* m_pMoveArmToScale;
+	JoystickButton*	m_pChangeCamera;
+	JoystickButton* m_pFrontPickup;
+	JoystickButton* m_pBackPickup;
 ///	Joystick* m_pAuxController;
 };
 /////////////////////////////////////////////////////////////////////////////
