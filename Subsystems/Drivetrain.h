@@ -36,13 +36,15 @@ public:
 
 private:
 	Solenoid	 *m_pDriveSolenoid;
-	CCANPosition *m_pLeftDrive;
+	CCANPosition *m_pLeftDrive1;
 	WPI_TalonSRX *m_pLeftDrive2;
 	WPI_TalonSRX *m_pLeftDrive3;
+	WPI_TalonSRX *m_pLeftDrive;
 
-	CCANPosition *m_pRightDrive;
+	CCANPosition *m_pRightDrive1;
 	WPI_TalonSRX *m_pRightDrive2;
 	WPI_TalonSRX *m_pRightDrive3;
+	WPI_TalonSRX *m_pRightDrive;
 
 	DifferentialDrive* m_pRobotDrive;
 

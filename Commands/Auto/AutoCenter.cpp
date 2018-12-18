@@ -15,7 +15,7 @@
 #include <Commands/Gripper/Eject.h>
 #include <Commands/Auto/Subcommands/DrivetrainFollowPath.h>
 
-AutoCenter::AutoCenter()
+AutoCenter::AutoCenter() : CommandGroup("AutoCenter")
 {
 	// 1. Home Arm
 	// 2. Decide where to go, drive to the Switch and raise arm to 46 degrees
@@ -23,6 +23,8 @@ AutoCenter::AutoCenter()
 	// 4. Profit?
 ///	AddSequential(new HomeArm());
 ///	AddParallel(new MoveArm(46.0));
+	/*
+	SmartDashboard::PutString("Autonomous", "AutoCenter");
 	if (DriverStation::GetInstance().GetGameSpecificMessage()[0] == 'R')
 	{
 		AddSequential(new DrivetrainFollowPath(ePathCenterToRight));
@@ -33,10 +35,13 @@ AutoCenter::AutoCenter()
 	}
 	else
 	{
-		printf("Error occured determining Autonomous message. Bailing out...");
-		return;
+		SmartDashboard::PutString("Debug", "Auto no work sorry");
+		Cancel();
 	}
-	AddSequential(new Eject());
+	*/
+	AddSequential(new DrivetrainFollowPath(ePathCenterToRight));
+///	SmartDashboard::PutString("Debug", "Ejecting");
+///	AddSequential(new Eject());
 }
 
 

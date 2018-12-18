@@ -32,21 +32,21 @@ private:
 	SendableChooser<Command*> *m_pAutoChooser;
 
 	// Autonomous Commands.
-	AutoIdle m_AutoIdle;
-	AutoCenter m_AutoCenter;
-	AutoLeft m_AutoLeft;
-	AutoRight m_AutoRight;
+	AutoIdle 	*m_pAutoIdle;
+	AutoCenter 	*m_pAutoCenter;
+	AutoLeft 	*m_pAutoLeft;
+	AutoRight 	*m_pAutoRight;
 
 	Compressor *m_pCompressor;
-	void RobotInit() override;
-	void RobotPeriodic() override;
-	void AutonomousInit() override;
-	void AutonomousPeriodic() override;
-	void TeleopInit() override;
-	void TeleopPeriodic() override;
-	void TestPeriodic() override;
-	void DisabledInit() override;
-	void DisabledPeriodic() override;
+	void RobotInit();
+	void RobotPeriodic();
+	void AutonomousInit();
+	void AutonomousPeriodic();
+	void TeleopInit();
+	void TeleopPeriodic();
+	void TestPeriodic();
+	void DisabledInit();
+	void DisabledPeriodic();
 };
 ///////////////////////////////////////////////////////////////////////////////
 #endif

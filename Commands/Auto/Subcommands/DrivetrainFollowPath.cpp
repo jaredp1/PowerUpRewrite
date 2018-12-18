@@ -17,8 +17,7 @@ DrivetrainFollowPath::DrivetrainFollowPath(int nPathID) : Command("DrivetrainFol
 
 	m_nLength = 0;
 
-	printf("FollowPath Constructed.");
-
+	SmartDashboard::PutString("Debug", "Constructing Path.");
 }
 
 /******************************************************************************
@@ -34,7 +33,7 @@ void DrivetrainFollowPath::Initialize()
 	{
 		// Just idling, exit.
 		m_bHasFinished = true;
-		printf("Idle Selected.");
+		SmartDashboard::PutString("Debug", "Idle path, this shouldn't be selected?");
 		return;
 	}
 
@@ -129,6 +128,7 @@ void DrivetrainFollowPath::Initialize()
 	    1.0, 0.0, 0.0, 1.0 / 15.5, 2.986   	// P, I, D, V, A
 	};
 
+	SmartDashboard::PutString("Debug", "Configured correctly I think");
 	// Free the file, despite it (not actually) causing uninitialized warnings.
 	free(fp);
 }
@@ -142,8 +142,9 @@ void DrivetrainFollowPath::Initialize()
 ******************************************************************************/
 void DrivetrainFollowPath::Execute()
 {
-	static int nCounter = 1;
+	static int nCounter = 0;
 	nCounter++;
+	SmartDashboard::PutString("Debug", "Looping, counter boye is at " + nCounter);
 	double dLeft = pathfinder_follow_encoder(m_LeftConfig, &m_LeftFollower, &m_LeftTrajectory, m_nLength, CRobotMain::m_Drivetrain.GetRightEncoderCount());
 	double dRight = pathfinder_follow_encoder(m_RightConfig, &m_RightFollower, &m_RightTrajectory, m_nLength, CRobotMain::m_Drivetrain.GetRightEncoderCount());
 
@@ -162,6 +163,8 @@ void DrivetrainFollowPath::Execute()
 
 	double dTurn = 0.8 * (-1.0/80.0) * dError;
 
+	SmartDashboard::PutNumber("Left MP", dLeft);
+	SmartDashboard::PutNumber("Right MP", dRight);
 
 	CRobotMain::m_Drivetrain.ManualDrive(dLeft + dTurn, dRight - dTurn);
 
